@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 import Navbar from '../../Components/Navbar/Navbar';
 import HeroSection from '../../Components/HeroSection/HeroSection';
@@ -13,27 +13,9 @@ import Footer from '../../Components/Footer/Footer';
 
 import heroImage from '../../assets/5a22a936-218c-4293-a204-c248be8f61ca.jpg';
 import facilitiesImage from '../../assets/bc9be882-ef6f-41fe-8ba3-5193cdd45ce4.jpg';
+import schoolLogo from '../../assets/phisp.png';
 
-/* ── MUI theme that disables default overrides so our CSS stays intact ── */
-const theme = createTheme({
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: { margin: 0 },
-      },
-    },
-    MuiTypography: {
-      defaultProps: { variantMapping: {} },
-      styleOverrides: { root: {} },
-    },
-    MuiList: {
-      styleOverrides: { root: { padding: 0 } },
-    },
-    MuiListItem: {
-      styleOverrides: { root: { padding: 0 } },
-    },
-  },
-});
+import theme from '../../theme/theme';
 
 /* ── Data ── */
 
@@ -241,6 +223,7 @@ const LandingPage: FC = () => {
       <CssBaseline />
 
       <Navbar
+        logoSrc={schoolLogo}
         links={NAV_LINKS}
         ctaLabel="Admissions 2027"
         ctaHref="#admissions"
@@ -248,12 +231,12 @@ const LandingPage: FC = () => {
 
       <HeroSection
         badgeText="CBSE Affiliated"
-        affiliationText="Affiliation No. 330963 &nbsp;|&nbsp; School No. 66692"
+        affiliationText="Affiliation No. 330963 | School No. 66692"
         titleLine1="Pragya Heritage"
         titleLine2Italic="International School"
         tagline="Equity is Excellence"
         description="A distinguished centre of learning on NH-31, Purnea — where rigorous academics, principled character formation, and equitable opportunity converge to shape every student into a confident, contributing citizen of the world."
-        primaryCta={{ label: 'Apply for 2027\u201328', href: '#admissions' }}
+        primaryCta={{ label: 'Apply for 2027–28', href: '#admissions' }}
         secondaryCta={{ label: 'Explore Academics', href: '#academics' }}
         stats={HERO_STATS}
         imageSrc={heroImage}
@@ -271,10 +254,10 @@ const LandingPage: FC = () => {
         }
         bodyParagraphs={[
           'At Pragya Heritage International School, we hold that every learner — regardless of background, circumstance, or prior attainment — deserves access to an education of the highest calibre. Our motto, <em>Equity is Excellence</em>, is not a slogan. It is the institutional commitment that shapes every admission decision, every classroom practice, and every investment in student support.',
-          'Founded on the principles of the CBSE framework and inspired by the enduring values of India\u2019s heritage of learning, we bridge tradition with modernity — instilling disciplined inquiry, ethical reasoning, and intellectual confidence in each student we serve.',
+          'Founded on the principles of the CBSE framework and inspired by the enduring values of India’s heritage of learning, we bridge tradition with modernity — instilling disciplined inquiry, ethical reasoning, and intellectual confidence in each student we serve.',
         ]}
-        quoteText={'\u201CWhen every student thrives, the institution reaches its highest potential.\u201D'}
-        quoteAttribution="\u2014 Institutional Founding Principle"
+        quoteText="“When every student thrives, the institution reaches its highest potential.”"
+        quoteAttribution="— Institutional Founding Principle"
       />
 
       <AcademicsSection

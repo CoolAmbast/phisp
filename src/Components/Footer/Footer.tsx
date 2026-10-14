@@ -1,28 +1,27 @@
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import Container from '@mui/material/Container';
 
-interface FooterLink {
+export interface FooterLink {
   label: string;
   href: string;
 }
 
-interface ContactItem {
-  icon: React.ReactNode;
+export interface ContactItem {
+  icon: ReactNode;
   title: string;
   lines: string[];
 }
 
-interface FooterProps {
-  brandName: React.ReactNode;
+export interface FooterProps {
+  brandName: ReactNode;
   brandTagline: string;
   brandDescription: string;
   quickLinks: FooterLink[];
   academicLinks: FooterLink[];
   contactItems: ContactItem[];
-  legalText: React.ReactNode;
+  legalText: ReactNode;
   cbseBadge: string;
   cbseNum: string;
 }
@@ -39,115 +38,303 @@ const Footer: FC<FooterProps> = ({
   cbseNum,
 }) => {
   return (
-    <footer id="contact" data-name="Site footer" aria-label="Site footer">
-      <div className="container">
-        <Box className="footer-top">
-          <Box className="footer-brand">
+    <Box
+      component="footer"
+      id="contact"
+      data-name="Site footer"
+      aria-label="Site footer"
+      sx={{
+        bgcolor: '#1C1A17',
+        color: '#F0EAE0',
+        pt: { xs: 5, sm: 7, md: 8 },
+        pb: { xs: 3, sm: 4 },
+      }}
+    >
+      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+        {/* Top Grid */}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(2, 1fr)',
+              md: '2fr 1fr 1fr 1.5fr',
+            },
+            gap: { xs: 3.5, sm: 4, md: 5 },
+            pb: { xs: 3.5, sm: 4.5 },
+            mb: { xs: 3, sm: 4 },
+            borderBottom: '1px solid rgba(240, 234, 224, 0.15)',
+          }}
+        >
+          {/* Brand */}
+          <Box>
             <Typography
-              component="p"
-              className="footer-brand-name"
-              sx={{ textTransform: 'none', fontStyle: 'normal' }}
+              sx={{
+                fontFamily: 'adobe-caslon-pro, "Caslon", georgia, serif',
+                fontSize: { xs: '1.35rem', sm: '1.5rem' },
+                fontWeight: 400,
+                color: '#F0EAE0',
+                lineHeight: 1.25,
+                mb: 0.5,
+              }}
             >
               {brandName}
             </Typography>
             <Typography
-              component="p"
-              className="footer-brand-tagline"
-              sx={{ textTransform: 'none', fontStyle: 'normal' }}
+              sx={{
+                fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: '#C09A3E',
+                mb: 1.5,
+              }}
             >
               {brandTagline}
             </Typography>
             <Typography
-              component="p"
-              className="footer-brand-desc"
-              sx={{ textTransform: 'none', fontStyle: 'normal' }}
+              sx={{
+                fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                fontSize: '0.84rem',
+                color: 'rgba(240, 234, 224, 0.65)',
+                lineHeight: 1.7,
+                maxWidth: 280,
+              }}
             >
               {brandDescription}
             </Typography>
           </Box>
 
+          {/* Quick Links */}
           <Box>
             <Typography
-              component="p"
-              className="footer-col-title"
-              sx={{ textTransform: 'none', fontStyle: 'normal' }}
+              sx={{
+                fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: '#C09A3E',
+                mb: 1.75,
+              }}
             >
               Quick Links
             </Typography>
-            <List className="footer-link-list" disablePadding>
+            <Box
+              component="ul"
+              sx={{
+                listStyle: 'none',
+                p: 0,
+                m: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1,
+              }}
+            >
               {quickLinks.map((link) => (
-                <ListItem key={link.label} disablePadding disableGutters>
-                  <a href={link.href}>{link.label}</a>
-                </ListItem>
+                <Box key={link.label} component="li">
+                  <Box
+                    component="a"
+                    href={link.href}
+                    sx={{
+                      fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                      fontSize: '0.875rem',
+                      color: 'rgba(240, 234, 224, 0.75)',
+                      textDecoration: 'none',
+                      transition: 'color 150ms ease',
+                      '&:hover': {
+                        color: '#F0EAE0',
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    {link.label}
+                  </Box>
+                </Box>
               ))}
-            </List>
+            </Box>
           </Box>
 
+          {/* Academics Links */}
           <Box>
             <Typography
-              component="p"
-              className="footer-col-title"
-              sx={{ textTransform: 'none', fontStyle: 'normal' }}
+              sx={{
+                fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: '#C09A3E',
+                mb: 1.75,
+              }}
             >
               Academics
             </Typography>
-            <List className="footer-link-list" disablePadding>
+            <Box
+              component="ul"
+              sx={{
+                listStyle: 'none',
+                p: 0,
+                m: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1,
+              }}
+            >
               {academicLinks.map((link) => (
-                <ListItem key={link.label} disablePadding disableGutters>
-                  <a href={link.href}>{link.label}</a>
-                </ListItem>
+                <Box key={link.label} component="li">
+                  <Box
+                    component="a"
+                    href={link.href}
+                    sx={{
+                      fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                      fontSize: '0.875rem',
+                      color: 'rgba(240, 234, 224, 0.75)',
+                      textDecoration: 'none',
+                      transition: 'color 150ms ease',
+                      '&:hover': {
+                        color: '#F0EAE0',
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    {link.label}
+                  </Box>
+                </Box>
               ))}
-            </List>
+            </Box>
           </Box>
 
-          <Box className="footer-contact-col">
+          {/* Contact Column */}
+          <Box>
             <Typography
-              component="p"
-              className="footer-col-title"
-              sx={{ textTransform: 'none', fontStyle: 'normal' }}
+              sx={{
+                fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: '#C09A3E',
+                mb: 1.75,
+              }}
             >
               Contact &amp; Location
             </Typography>
-            {contactItems.map((item) => (
-              <Box key={item.title} className="footer-contact-item">
-                <Box className="footer-contact-icon" component="span">
-                  {item.icon}
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.75 }}>
+              {contactItems.map((item) => (
+                <Box
+                  key={item.title}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: 1.25,
+                  }}
+                >
+                  <Box
+                    component="span"
+                    sx={{
+                      color: '#C09A3E',
+                      flexShrink: 0,
+                      mt: 0.35,
+                      '& svg': { width: 18, height: 18 },
+                    }}
+                  >
+                    {item.icon}
+                  </Box>
+                  <Box>
+                    <Typography
+                      component="strong"
+                      sx={{
+                        display: 'block',
+                        fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                        fontSize: '0.8125rem',
+                        fontWeight: 600,
+                        color: '#F0EAE0',
+                        mb: 0.25,
+                      }}
+                    >
+                      {item.title}
+                    </Typography>
+                    {item.lines.map((line, i) => (
+                      <Typography
+                        key={i}
+                        component="span"
+                        sx={{
+                          display: 'block',
+                          fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                          fontSize: '0.8125rem',
+                          color: 'rgba(240, 234, 224, 0.72)',
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {line}
+                      </Typography>
+                    ))}
+                  </Box>
                 </Box>
-                <Box className="footer-contact-text">
-                  <strong>{item.title}</strong>
-                  {item.lines.map((line, i) => (
-                    <span key={i}>
-                      {line}
-                      {i < item.lines.length - 1 && <br />}
-                    </span>
-                  ))}
-                </Box>
-              </Box>
-            ))}
+              ))}
+            </Box>
           </Box>
         </Box>
 
-        <Box className="footer-bottom">
+        {/* Footer Bottom */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { xs: 'flex-start', sm: 'center' },
+            justifyContent: 'space-between',
+            gap: 2,
+          }}
+        >
           <Typography
-            component="p"
-            className="footer-legal"
-            sx={{ textTransform: 'none', fontStyle: 'normal' }}
+            sx={{
+              fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+              fontSize: '0.75rem',
+              color: 'rgba(240, 234, 224, 0.5)',
+              lineHeight: 1.6,
+            }}
           >
             {legalText}
           </Typography>
-          <Box className="footer-cbse-strip">
-            <Typography component="span" className="footer-cbse-badge">
+
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { xs: 'flex-start', sm: 'center' },
+              gap: 1.25,
+            }}
+          >
+            <Box
+              sx={{
+                fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: '#FFFFFF',
+                bgcolor: '#8B1A2F',
+                px: 1,
+                py: 0.35,
+              }}
+            >
               {cbseBadge}
-            </Typography>
+            </Box>
             <Typography
-              component="span"
-              className="footer-cbse-num"
+              sx={{
+                fontFamily: 'acumin-pro, helvetica-neue, arial, sans-serif',
+                fontSize: '0.75rem',
+                color: 'rgba(240, 234, 224, 0.6)',
+                letterSpacing: '0.04em',
+              }}
               dangerouslySetInnerHTML={{ __html: cbseNum }}
             />
           </Box>
         </Box>
-      </div>
-    </footer>
+      </Container>
+    </Box>
   );
 };
 
